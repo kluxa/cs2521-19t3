@@ -1,0 +1,26 @@
+
+img {
+	max-width: 100%;
+	margin-bottom: 10px;
+}
+
+.carousel-caption {
+	position: relative;
+	left: auto;
+	right: auto;
+	top: -10px;
+	color: black;
+	height: 60px;
+}
+
+.code-block {
+	background-color: #f7f7f7;
+	border-radius: 10px;
+	padding-left: 20px;
+}
+
+.terminal-window {
+	background-color: black;
+	color: white;
+	padding-left: 20px;
+}

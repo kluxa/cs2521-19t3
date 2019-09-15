@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		
+		<!-- Bootstrap CSS -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="../../style.css">
+
+		<title>Code Sharing</title>
+	</head>
+	
+	<body>
+		<div class="container text-justify my-5" style="max-width: 800px;">
+
+			<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="../productivity.html">Productivity</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Code Sharing Between Devices</li>
+        </ol>
+			</nav>
+			
+			<h1 class="display-4">Code Sharing Between Devices</h1>
+			<p class="text-justify lead">
+				This guide will help you to set up GitHub as a way to share code between multiple devices, without having to copy and paste code back and forth.
+			</p>
+
+			<!-------------------------- Contents --------------------------->
+
+			<h4>In this guide:</h4>
+			<ul style="list-style-type: none; padding-left: 0px;">
+				<li><a href="#part-1">Part 1: Creating a GitHub repository</a></li>
+				<li><a href="#part-2">Part 2: Setting up an SSH Key</a></li>
+				<li><a href="#part-3">Part 3: Using GitHub</a></li>
+			</ul>
+
+			<!--------------------- -- Prerequisites ------------------------>
+
+			<h4>Prerequisites:</h4>
+			<ul>
+				<li>If you are a Windows user, then I highly recommended that you install and set up Windows Subsystem for Linux (WSL) first. The guide for installing WSL can be found <a href="../wsl/wsl.html">here</a>.</li>
+			</ul>
+
+			<!--------------------------- Part 1 ---------------------------->
+
+			<h2 id="part-1">Part 1: Creating a GitHub repository</h2>
+			<p class="text-justify lead">
+				This part will help you to sign up for a GitHub account and create a repository.
+			</p>
+
+			<p>
+				If you don't already have a GitHub account, go to <a href="https://github.com/join" target="_blank">https://github.com/join</a> and sign up with an appropriate username, email and password. I recommend using your UNSW email.
+			</p>
+
+			<img class="mb-4" src="assets/github-sign-up-1.png">
+
+			<p>
+				On the next screen, you'll be prompted to choose your subscription. The <b>Free</b> subscription is sufficient for our needs, so you can simply click on <b>Continue</b> at the bottom. You may also follow the instructions to get the GitHub Student Developer Pack if you wish.
+			</p>
+
+			<img class="mb-4" src="assets/github-sign-up-2.png">
+
+			<p>
+				On the next screen, answer the questions and then click on <b>Submit</b>. You don't need to answer the questions, but it shouldn't take longer than a minute.
+			</p>
+
+			<p>
+				If you haven't already verified your email address, you'll be asked to do so. After you've done this, you might also be asked to create your first repository. A <a href="https://help.github.com/en/articles/about-repositories" target="_blank">repository</a> is like a folder where you store all the code related to your project. In our case, we want to create a repository to store all of your COMP2521-related code. Give your repository an appropriate name, click on <b>Private</b>, check the box next to <b>Initialise this repository with a README</b>, and then click <b>Create repository</b>.
+			</p>
+
+			<div class="alert alert-danger text-justify">
+				<b>Important:</b> Make sure that you select <b>Private</b> for your repository. Otherwise, other people will be able to see your repository and copy your code (which could lead to a plagiarism case).
+			</div>
+
+			<img class="mb-4" src="assets/github-sign-up-3.png">
+
+			<p>
+				If you already had a GitHub account, then you can create a new repository by either clicking on the plus icon on the navigation bar and then clicking <b>New repository</b>, or by clicking on the <b>Repositories</b> tab and then clicking on the <b>New</b> button (you probably already know this).
+			</p>
+
+			<img class="mb-4" src="assets/github-sign-up-4.png">
+
+			<p>
+				Congratulations! You've just created your first GitHub repository. You'll be using it later to store all of your COMP2521 code.
+			</p>
+
+			
+			<!--------------------------- Part 2 ---------------------------->
+
+			<h2 id="part-2">Part 2: Setting Up an SSH Key</h2>
+			
+			<p class="text-justify lead">
+				This part will help you to set up an SSH key, which will enable you to easily push and pull code to and from GitHub.
+			</p>
+
+			<p>
+				There is a guide on how to set up an SSH key on <a href="https://help.github.com/en/articles/connecting-to-github-with-ssh" target="_blank">GitHub</a>. The sections you should follow are: <b>Checking for existing SSH keys</b>, <b>Generating a new SSH key and adding it to the ssh-agent</b>, <b>Adding a new SSH key to your GitHub account</b>, and <b>Testing your SSH connection</b>. You should set up an SSH key on both your local machine and your CSE account.
+			</p>
+
+			<p><b>Note for WSL users: </b>If you are setting up an SSH key on WSL, make sure you follow the instructions in the <i>Linux</i> tabs, <b>not</b> the Windows tabs.</p>
+
+			<p>Here are some screenshots from setting up an SSH key on WSL:</p>
+
+			<div id="ssh-setup-on-wsl-carousel" class="carousel slide" data-interval="false">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" src="assets/ssh-1.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>1. Generating a new SSH key (obviously, replace the email with your own email)</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/ssh-2.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>2. Adding the SSH key to the ssh-agent</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/ssh-3.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>3. Copying the SSH key to the clipboard</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/ssh-4.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>4. After adding the SSH key to GitHub</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/ssh-5.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>5. Testing the SSH connection</p>
+						</div>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#ssh-setup-on-wsl-carousel" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#ssh-setup-on-wsl-carousel" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+
+			<p>Here are some screenshots from setting up an SSH key on CSE (it's almost exactly the same as for WSL):</p>
+
+			<div id="ssh-setup-on-cse-carousel" class="carousel slide" data-interval="false">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" src="assets/ssh-6.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>1. Generating a new SSH key (obviously, replace the email with your own email)</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/ssh-7.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>2. Adding the SSH key to the ssh-agent</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/ssh-8.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>3. Copying the SSH key to the clipboard</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/ssh-9.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>4. After adding the SSH key to GitHub</p>
+						</div>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#ssh-setup-on-cse-carousel" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#ssh-setup-on-cse-carousel" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+
+			<h3>Working with SSH Key Passphrases</h3>
+
+			<p>
+				Currently, whenever you push (i.e., upload) your code to GitHub or pull (i.e., download) code from GitHub, you will be asked to enter your SSH key passphrase, which can become tedious. After following these steps, you'll only need to enter your passphrase once (per reboot).
+			</p>
+
+			<h4>On Mac</h4>
+			<p>
+				Mac users can simply follow the instructions under the Mac tab on <a href="https://help.github.com/en/articles/working-with-ssh-key-passphrases" target="_blank">this page</a>. (From the looks of it, you don't have to do very much, if anything.)
+			</p>
+
+			<h4>On WSL</h4>
+			<p>
+				WSL users should add the following lines to the end of their <code>~/.bashrc</code> file. <code>~/.bashrc</code> is a hidden file, so you won't be able to see it by just typing <code>ls</code> - you'll need <code>ls -al</code> to see it. Use VIM to add the lines.
+			</p>
+
+			<pre class="code-block"><code>
+env=~/.ssh/agent.env
+
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+
+agent_start () {
+	(umask 077; ssh-agent >| "$env")
+	. "$env" >| /dev/null ; }
+
+agent_load_env
+
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
+agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+	agent_start
+	ssh-add
+elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+	ssh-add
+fi
+
+unset env
+			</code></pre>
+
+			<h4>On CSE (i.e., Linux)</h4>
+			<p>
+				You'll need to follow the same instructions as for WSL (except you can use a text editor like gedit or VSCode to add the lines).
+			</p>
+
+			<p>Below are some screenshots of the process on WSL and CSE:</p>
+
+			<div id="working-with-ssh-key-carousel" class="carousel slide" data-interval="false">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" src="assets/working-with-ssh-key-1.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>1. On WSL, using <code>ls -al</code> to reveal <code>~/.bashrc</code>, and opening <code>~/.bashrc</code> with VIM</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/working-with-ssh-key-2.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>2. On WSL, adding the given lines to the end of <code>~/.bashrc</code></p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/working-with-ssh-key-3.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>3. On CSE, opening <code>~/.bashrc</code> in gedit</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="assets/working-with-ssh-key-4.png">
+						<div class="carousel-caption d-none d-md-block">
+							<p>4. On CSE, adding the given lines to the end of <code>~/.bashrc</code></p>
+						</div>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#working-with-ssh-key-carousel" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#working-with-ssh-key-carousel" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+
+			<p>
+				Now, you will only be prompted for your SSH passphrase the first time you open a terminal. Hooray!
+			</p>
+
+			<p>
+				Note that if you don't need SSH in a particular session, you can avoid entering your passphrase by simply typing <kbd>Ctrl+C</kbd> when you are prompted for it.
+			</p>
+
+			<!--------------------------- Part 3 ---------------------------->
+
+			<h2 id="part-3">Part 3: Using GitHub</h2>
+
+			<div class="alert alert-warning text-center">
+				<b>This section is a WIP (work in progress).</b>
+			</div>
+
+			<p class="lead">
+				In this part, you'll learn how to use the basic Git commands to transfer code between your devices via GitHub.
+			</p>
+
+			<p>
+				Git is a version-control system, which enables developers to track changes during software development. Basically, it keeps track of snapshots of your code during development. Meanwhile, <b>GitHub</b> is a web interface to Git that includes many of its own features. We're only going to be using GitHub to reduce the hassle of transferring code.
+			</p>
+
+			<p>
+				So far, we've created a repository on GitHub. Now, we want each of our devices (say, our local machine and our CSE account) to have a copy of the repository. This is called cloning.
+			</p>
+
+			<p>
+				Go to the GitHub repository you created in Part 1. Click on <b>Clone or download</b> and copy the SSH URL. (If the box says <b>Clone with HTTPS</b> then first click on <b>Use SSH</b> in the top right.)
+			</p>
+
+			<img src="assets/using-github-1.png">
+
+			<p>Now, on your terminal, navigate to where you want the repository to be stored and use <code>git clone &lt;ssh url&gt;</code>, where <code>&lt;ssh url&gt;</code> is the SSH URL you just copied. This will download a copy of the repository. Then, go into the repository directory. For example, on WSL:</p>
+
+			<pre class="terminal-window"><code>
+$ cd /mnt/c/Users/YourName/Documents
+$ git clone git@github.com:username/repository-name.git
+Cloning into 'repository-name'...
+...
+$ cd repository-name
+$ ls
+README.md
+			</code></pre>
+
+			<p>
+				Repeat this on each device where you plan to do COMP2521 work. After you are done, each of your devices should have a copy of the initial version of the repository.
+			</p>
+
+			<div class="text-center">
+				<img src="assets/using-github-2.png">
+			</div>
+
+			<p>
+				To be continued...
+			</p>
+
+			<!-- <p>
+				Great! Now, let's suppose we did some work on our PC and produced a file <code>helloWorld.c</code>. Let's also slightly modify <code>README.md</code>.
+			</p>
+			
+			<p>
+					If you now use <code>git status</code>, which lists the status of files in the repository directory, you'll get something like this:
+			</p>
+
+			<pre class="terminal-window"><code>
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   README.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        helloWorld.c
+
+no changes added to commit (use "git add" and/or "git commit -a")
+			</code></pre>
+			
+
+		</div> -->
+		
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</body>
+</html>
