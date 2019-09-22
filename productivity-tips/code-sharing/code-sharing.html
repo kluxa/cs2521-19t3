@@ -326,37 +326,87 @@ README.md
 			</div>
 
 			<p>
-				To be continued...
+				Great! Now, let's make some small changes for demonstration purposes. Create a file called <code>helloWorld.c</code> and add a bit of code to it. Also add a line (containing anything you want) to <code>README.md</code>.
 			</p>
 
-			<!-- <p>
-				Great! Now, let's suppose we did some work on our PC and produced a file <code>helloWorld.c</code>. Let's also slightly modify <code>README.md</code>.
-			</p>
-			
 			<p>
-					If you now use <code>git status</code>, which lists the status of files in the repository directory, you'll get something like this:
+				Suppose you now want to save a snapshot of your current files. (The technical phrase is that we want to make a <b>commit</b>.) To understand how to do this, we need to dive a little deeper into how Git works.
+			</p>
+
+			<h4>Detour: Basics of Git Internals</h4>
+			<p>
+				A Git repository is composed of two main parts that are relevant to us - the <b>index</b> and the <b>commit history</b>. The index, also known as the staging area, is where you assemble your files to make commits, which are snapshots of the index at various points in time. Meanwhile, the commit history is where the commits are actually stored. Currently this is the state of our Git repository:
+			</p>
+
+			<div class="text-center">
+				<img src="assets/using-github-3.png">
+			</div>
+
+			<p>
+				(If you're wondering where all of this is actually stored, it's in a hidden directory called <code>.git</code>. You can poke around in there, but don't change anything.)
+			</p>
+
+			<p>
+				Here are some observations that we can make:
+				<ul>
+					<li>
+						<code>v0</code> is the initial commit of our repository. It contains only <code>README.md</code>, which makes sense because when we first created our repository in Part 1, it consisted of only that file.
+					</li>
+					<li>
+						The index contains <code>README.md</code>, but not <code>helloWorld.c</code>, which is the file that we just created. Also, <code>README.md</code> in the index does not contain the extra line that we added. This is because we haven't added our changes to the index.
+					</li>
+				</ul>
+			</p>
+
+			<p>
+				To add our changes to the index, we can use the <code>git add</code> command. We can either add the files individually:
 			</p>
 
 			<pre class="terminal-window"><code>
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-        modified:   README.md
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-        helloWorld.c
-
-no changes added to commit (use "git add" and/or "git commit -a")
+$ git add helloWorld.c
+$ git add README.md
 			</code></pre>
-			
 
-		</div> -->
+			<p>
+				...or we can add all of the changes at once:
+			</p>
+			
+			<pre class="terminal-window"><code>
+$ git add -A
+			</code></pre>
+
+			<p>
+				Now, our changes will be added to the index, like so:
+			</p>
+			<div class="text-center">
+				<img src="assets/using-github-4.png">
+			</div>
+
+			<p>
+				Note that <code>v0</code> doesn't change, as it is a snapshot of the index at a previous point in time - we can't change it.
+			</p>
+
+			<p>
+				Now, we are ready to make the commit, that is, take a snapshot of our index. The command to do this is <code>git commit -m "commit message"</code>. For example:
+			</p>
+
+			<pre class="terminal-window"><code>
+$ git commit -m "added helloWorld.c"
+			</code></pre>
+
+			<p>
+				This saves the current state of the index in the commit history, so now we have a new commit:
+			</p>
+
+			<div class="text-center">
+				<img src="assets/using-github-5.png">
+			</div>
+
+			<p>
+				To be continued...
+			</p>
+
+		</div>
 		
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
