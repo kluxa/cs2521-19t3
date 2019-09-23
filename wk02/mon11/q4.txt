@@ -1,2 +1,128 @@
 
+Suppose that we had two vectors:
+X = [0, 0,  1, 0, 0, 5]
+Y = [3, 0, -1, 0, 0, 4]
 
+These vectors would be represented by these two sparse vectors:
+V1 = [(2,  1), (5,  5)]
+V2 = [(0,  3), (2, -1), (5,  4)]
+
+Each element of the sparse vector contains two components: The first
+component  describes the position of a value in the original vector,
+whereas the second component is the value itself.
+
+In the beginning of the algorithm, we have two indices that point to
+the beginning of the vectors.
+
+V3 = []
+
+         |
+         v
+V1 = [(2,  1), (5,  5)]
+V2 = [(0,  3), (2, -1), (5,  4)]
+         ^
+         |
+
+These elements have different positions, so we take the element with
+the smaller position (0, 3), and add it to our new sparse vector V3.
+Then, we advance the index that pointed to (0,  3).
+
+V3 = [(0,  3)]
+
+         |
+         v
+V1 = [(2,  1), (5,  5)]
+V2 = [(0,  3), (2, -1), (5,  4)]
+                  ^
+                  |
+
+These elements have the same position (2), so we just add the values
+together.  Since they sum to 0, position 2 in the new vector will be
+0.  This means it won't be included in the new sparse vector, as the
+sparse vector only stores non-zero values to save space.  Now, since
+the elements have the same position, we advance both indices.
+
+V3 = [(0,  3)]
+
+                  |
+                  v
+V1 = [(2,  1), (5,  5)]
+V2 = [(0,  3), (2, -1), (5,  4)]
+                           ^
+                           |
+
+Again,  these elements have the same position (5), and they sum to a
+*non-zero* value (9). So the new element is (5, 9), and we append it
+to the new sparse vector.
+
+V3 = [(0,  3), (5,  9)]
+
+                      |
+                      v
+V1 = [(2,  1), (5,  5)]
+V2 = [(0,  3), (2, -1), (5,  4)]
+                               ^
+                               |
+
+Since we have exhausted both sparse vectors, we are done.
+
+So this is our algorithm in pseudocode:
+
+--------------------------------------------------------------------
+
+V3 = []
+i = 0 // used to scan through V1
+j = 0 // used to scan through V2
+
+// while V1 and V2 are not both exhausted
+while i < V1.length or j < V2.length do
+    // V1 is exhausted, but not V2
+    if i == V1.length then
+        V3.append(V2[j])
+        j++
+
+    // V2 is exhausted, but not V1
+    elif j == V2.length then
+        V3.append(V1[i])
+        i++
+
+    // position of V1[i] is equal to the position of V2[j]
+    elif V1[i][0] == V2[j][0] then
+        sum = V1[i][1] + V2[j][1]
+        if sum != 0 then
+            V3.append((V1[i][0], sum))
+        end if
+        i++
+        j++
+
+    // position of V1[i] is smaller than position of V2[j]
+    elif V1[i][0] < V2[j][0] then
+        V3.append(V1[i])
+        i++
+
+    // position of V2[j] is smaller than position of V1[i]
+    else
+        V3.append(V2[j])
+        j++
+    end if
+end while
+
+--------------------------------------------------------------------
+
+To determine the time complexity of our algorithm,  we notice that i
+and j are incremented V1.length + V2.length times in total, since:
+- they are both initialised to 0
+- we never increment i or j by more than one at a time
+- we only exit the while loop once i == V1.length and j == V2.length
+
+Furthermore, in each condition in the if-chain we either increment i
+or j (or both).
+
+Hence,  the loop runs V1.length + V2.length times in the worst case.
+We also note that every iteration of the loop runs in constant time.
+This is easy to see because in the while loop,  there are no further
+loops - only if statements, increments, simple conditions, and calls
+to 'append' (which you can assume occurs in constant time).
+
+Therefore, our algorithm is O(n + m),  where n and m are the lengths
+of V1 and V2 respectively.
