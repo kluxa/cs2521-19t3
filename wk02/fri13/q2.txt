@@ -1,2 +1,36 @@
 
+The general strategy is to maintain two indices, one which starts at the
+beginning  of  the  string,  and  another which starts at the end of the
+string.  We  move  the  indices towards each other, comparing characters
+along the way, until they cross.
 
+Suppose S is the string and n is its length. The algorithm would be:
+
+	i = 0
+	j = n - 1
+	while i < j do
+		if S[i] != S[j] then
+			return false
+		end if
+		i++
+		j--
+	end while
+	return true
+
+Time complexity: We count how many times each line will run in the worst
+case.
+
+	i = 0                      > 1
+	j = n - 1                  > 1
+	while i < j do             > n/2
+		if S[i] =/= S[j] then  > n/2
+			return false       > 1
+		end if
+		i++                    > n/2
+		j--                    > n/2
+	end while
+	return true                > 1
+
+So the time complexity is O(n/2) = O(n).
+
+The code is in palindrome.c.
