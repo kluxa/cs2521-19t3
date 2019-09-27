@@ -29,7 +29,7 @@ to n(n + 1)/2. This makes our algorithm O(n^2).
 The problem with our algorithm is that we are unnecessarily repeating a
 lot  of  computation. For example, suppose we just computed power(x, i)
 on  Line  3. We know from maths that to compute power(x, i + 1), we can
-simply  multiply power(x, i + 1) by x, but instead, our pseudocode just
+simply  multiply  power(x, i)  by  x,  but instead, our pseudocode just
 computes it from scratch every time.
 
 -- Second attempt --
@@ -37,16 +37,17 @@ computes it from scratch every time.
 We can improve on our first attempt by having an array which stores the
 powers of x, which we can compute in O(n) time.
 
- 1 | power = 1                   | > 1
- 2 | for i = 0..n do             | > n
- 3 |     powers[i] = power       | > n
- 4 |     power *= x              | > n
- 5 | end for
+ 1 | int powers[n]               | > 1
+ 2 | power = 1                   | > 1
+ 3 | for i = 0..n do             | > n
+ 4 |     powers[i] = power       | > n
+ 5 |     power *= x              | > n
+ 6 | end for
 
- 6 | sum = 0                     | > 1
- 7 | for i = 0..n do             | > n
- 8 |     sum += A[i] * powers[i] | > n
- 9 | end for
+ 7 | sum = 0                     | > 1
+ 8 | for i = 0..n do             | > n
+ 9 |     sum += A[i] * powers[i] | > n
+10 | end for
 
 Both parts of the algorithm run in O(n) time,  so overall our algorithm
 is O(n).
@@ -59,9 +60,9 @@ corresponding coefficient and add it to the sum.
 
 This doesn't change the time complexity, but saves on space.
 
- 1 | power = 1
- 2 | sum = 0
- 3 | for i = 0..n do
- 4 |     sum += A[i] * power
- 5 |     power *= x
+ 1 | power = 1                   | > 1
+ 2 | sum = 0                     | > 1
+ 3 | for i = 0..n do             | > n
+ 4 |     sum += A[i] * power     | > n
+ 5 |     power *= x              | > n
  6 | end for
