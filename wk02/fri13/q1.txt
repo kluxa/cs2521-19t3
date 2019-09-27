@@ -1,2 +1,15 @@
 
+------------------------
+Counting line executions
+------------------------
 
+We can count the number of times each line is run:
+
+for all i = n down to 1 do      > n times
+    for all j = n down to i do  > 1 + 2 + ... + n = n(n + 1)/2 times
+        print A[i] A[j]         > 1 + 2 + ... + n = n(n + 1)/2 times
+    end for
+end for
+
+The line that run the most runs for about n(n + 1)/2 times. So, the time
+complexity is O(n^2).
