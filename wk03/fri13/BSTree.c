@@ -17,8 +17,7 @@ int TreeNumNodes(BSTree t) {
 /**
  * Returns  the  height  of  the given tree. The height of a tree is the
  * number  of  edges  on  the  longest path from the root node to a leaf
- * node.  The  height of an empty tree is 0 (this can be -1 depending on
- * the specification).
+ * node. The height of an empty tree is -1.
  */
 int TreeHeight(BSTree t) {
     if (t == NULL) {

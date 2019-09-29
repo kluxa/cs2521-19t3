@@ -217,17 +217,17 @@ static void testTreeNumNodes(void) {
 }
 
 static void testTreeHeight(void) {
-    assert(TreeHeight(t01) == 0);
-    assert(TreeHeight(t02) == 0);
-    assert(TreeHeight(t03) == 1);
-    assert(TreeHeight(t04) == 1);
-    assert(TreeHeight(t05) == 1);
-    assert(TreeHeight(t06) == 2);
-    assert(TreeHeight(t07) == 2);
-    assert(TreeHeight(t08) == 2);
-    assert(TreeHeight(t09) == 3);
-    assert(TreeHeight(t10) == 3);
-    assert(TreeHeight(t11) == 5);
+    assert(TreeHeight(t01) == -1);
+    assert(TreeHeight(t02) ==  0);
+    assert(TreeHeight(t03) ==  1);
+    assert(TreeHeight(t04) ==  1);
+    assert(TreeHeight(t05) ==  1);
+    assert(TreeHeight(t06) ==  2);
+    assert(TreeHeight(t07) ==  2);
+    assert(TreeHeight(t08) ==  2);
+    assert(TreeHeight(t09) ==  3);
+    assert(TreeHeight(t10) ==  3);
+    assert(TreeHeight(t11) ==  5);
 
     printf("TreeHeight tests passed!\n");
 }
