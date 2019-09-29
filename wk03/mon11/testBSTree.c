@@ -13,6 +13,7 @@
 static void initTrees(void);
 
 static void testTreeNumNodes(void);
+static void testTreeHeight(void);
 static void testCountInternal(void);
 static void testNodeDepth(void);
 static void testBSTreeMaxBranchLen(void);
@@ -26,6 +27,7 @@ int main(void) {
     initTrees();
 
     testTreeNumNodes();
+    testTreeHeight();
     testCountInternal();
     testNodeDepth();
     testBSTreeMaxBranchLen();
@@ -212,6 +214,22 @@ static void testTreeNumNodes(void) {
     assert(TreeNumNodes(t11) == 9);
 
     printf("TreeNumNodes tests passed!\n");
+}
+
+static void testTreeHeight(void) {
+    assert(TreeHeight(t01) == 0);
+    assert(TreeHeight(t02) == 0);
+    assert(TreeHeight(t03) == 1);
+    assert(TreeHeight(t04) == 1);
+    assert(TreeHeight(t05) == 1);
+    assert(TreeHeight(t06) == 2);
+    assert(TreeHeight(t07) == 2);
+    assert(TreeHeight(t08) == 2);
+    assert(TreeHeight(t09) == 3);
+    assert(TreeHeight(t10) == 3);
+    assert(TreeHeight(t11) == 5);
+
+    printf("TreeHeight tests passed!\n");
 }
 
 static void testCountInternal(void) {
