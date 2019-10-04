@@ -340,17 +340,17 @@ static void testNodeDepth(void) {
 }
 
 static void testBSTreeMaxBranchLen(void) {
-    assert(BSTreeMaxBranchLen(t01) == 0);
-    assert(BSTreeMaxBranchLen(t02) == 0);
-    assert(BSTreeMaxBranchLen(t03) == 1);
-    assert(BSTreeMaxBranchLen(t04) == 1);
-    assert(BSTreeMaxBranchLen(t05) == 1);
-    assert(BSTreeMaxBranchLen(t06) == 2);
-    assert(BSTreeMaxBranchLen(t07) == 2);
-    assert(BSTreeMaxBranchLen(t08) == 2);
-    assert(BSTreeMaxBranchLen(t09) == 3);
-    assert(BSTreeMaxBranchLen(t10) == 3);
-    assert(BSTreeMaxBranchLen(t11) == 5);
+    assert(BSTreeMaxBranchLen(t01) == -1);
+    assert(BSTreeMaxBranchLen(t02) ==  0);
+    assert(BSTreeMaxBranchLen(t03) ==  1);
+    assert(BSTreeMaxBranchLen(t04) ==  1);
+    assert(BSTreeMaxBranchLen(t05) ==  1);
+    assert(BSTreeMaxBranchLen(t06) ==  2);
+    assert(BSTreeMaxBranchLen(t07) ==  2);
+    assert(BSTreeMaxBranchLen(t08) ==  2);
+    assert(BSTreeMaxBranchLen(t09) ==  3);
+    assert(BSTreeMaxBranchLen(t10) ==  3);
+    assert(BSTreeMaxBranchLen(t11) ==  5);
 
     printf("BSTreeMaxBranchLen tests passed!\n");
 }

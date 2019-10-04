@@ -21,7 +21,7 @@ int TreeNumNodes(BSTree t) {
  */
 int TreeHeight(BSTree t) {
     if (t == NULL) {
-        return 0;
+        return -1;
     } else if (t->left == NULL && t->right == NULL) {
         return 0;
     } else {
@@ -37,7 +37,13 @@ int TreeHeight(BSTree t) {
  * leaf.
  */
 int countInternal(BSTree t) {
-    return -1;
+    if (t == NULL) {
+        return 0;
+    } else if (t->left == NULL && t->right == NULL) {
+        return 0;
+    } else {
+        return 1 + countInternal(t->left) + countInternal(t->right);
+    }
 }
 
 /**
@@ -45,7 +51,19 @@ int countInternal(BSTree t) {
  * it exists, or -1 otherwise.
  */
 int nodeDepth(BSTree t, int key) {
-    return -1;
+    if (t == NULL) {
+        return -1;
+    } else if (t->value == key) {
+        return 0;
+    } else if (key < t->value) {
+        int depth = nodeDepth(t->left, key);
+        if (depth == -1) return -1;
+        return 1 + depth;
+    } else {
+        int depth = nodeDepth(t->right, key);
+        if (depth == -1) return -1;
+        return 1 + depth;
+    }
 }
 
 /**
@@ -55,5 +73,5 @@ int nodeDepth(BSTree t, int key) {
  * is considered to be -1.
  */
 int BSTreeMaxBranchLen(BSTree t) {
-    return -1;
+    return TreeHeight(t);
 }
