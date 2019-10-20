@@ -3,6 +3,7 @@ Code for COMP2521 [19t3]
 
 ## Kahoots
 - [Week 2 - Analysis of Algorithms](https://create.kahoot.it/details/comp2521-week-2/955b123d-32b1-47fe-baac-2da8878f4ed5)
+- [Week 3 - Binary Search Trees](https://create.kahoot.it/details/comp2521-week-3/e5de378d-fd56-481b-b4ba-c2a8ec1fe627)
 
 ## Helpful Links
 - [Data Structure Visualization](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
