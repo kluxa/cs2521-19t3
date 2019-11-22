@@ -19,8 +19,15 @@ static List listUnlinkNode(List ls, List node);
 // the  copy  list  is  empty.  We should end up with a
 // sorted list, which we just return.
 List selectSort(List ls) {
-	// TODO
-	return NULL;
+	List copy = copyList(ls);
+	List head = NULL;
+	while (copy != NULL) {
+		List max = listMax(copy);
+		copy = listUnlinkNode(copy, max);
+		max->next = head;
+		head = max;
+	}
+	return head;
 }
 
 // Produces a copy of the given list

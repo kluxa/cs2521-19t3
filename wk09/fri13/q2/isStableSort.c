@@ -9,8 +9,11 @@ static void bubbleSort(Item A[], int size);
 static void swap(Item A[], int i, int j);
 
 bool isStableSort(Item original[], Item sorted[], int lo, int hi) {
-	// TODO
-	return false;
+	int size = hi - lo + 1;
+	Item copy[size];
+	arrayCopy(copy, &original[lo], size);
+	bubbleSort(copy, size);
+	return arraysEqual(copy, sorted, size);
 }
 
 // Known to be stable
