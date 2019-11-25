@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"queue.h": "c",
+		"graph.h": "c"
+	}
+}
